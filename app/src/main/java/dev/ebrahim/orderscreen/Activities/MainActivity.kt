@@ -17,10 +17,14 @@ import androidx.compose.ui.unit.dp
 import dev.ebrahim.orderscreen.ViewModels.PlayerViewModel
 import dev.ebrahim.orderscreen.compasable.BarSection
 import dev.ebrahim.orderscreen.compasable.BottomBar
+import dev.ebrahim.orderscreen.compasable.LazyList
+import dev.ebrahim.orderscreen.compasable.LoginScreen
 import dev.ebrahim.orderscreen.compasable.PlayersList
 import dev.ebrahim.orderscreen.compasable.SearchSection
 import dev.ebrahim.orderscreen.compasable.SectionLeagues
+import dev.ebrahim.orderscreen.compasable.ShowDate_TimePicker
 import dev.ebrahim.orderscreen.compasable.greet
+import dev.ebrahim.orderscreen.compasable.lazyTask
 import dev.ebrahim.orderscreen.ui.theme.OrderScreenTheme
 
 
@@ -29,6 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel :PlayerViewModel by viewModels ()
+
         setContent {
             OrderScreenTheme {
                 // A surface container using the 'background' color from the theme
@@ -36,20 +41,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = Color.LightGray
                 ) {
                     Column {
-                        BarSection()
-                        Spacer(height = 10)
-                        greet()
-                        Spacer(height = 10)
-                        SearchSection()
-                        Spacer(height = 30)
-                        SectionLeagues()
-                        Spacer(height = 30)
-                        PlayersList(players = viewModel.listPlayers) { playerId ->
-                            viewModel.changeFavorite(playerId)
-                        }
-                        Spacer(height = 50)
-                        BottomBar()
+//                        BarSection()
+//                        Spacer(height = 10)
+//                        greet()
+//                        Spacer(height = 10)
+//                        SearchSection()
+//                        Spacer(height = 30)
+//                        SectionLeagues()
+//                        Spacer(height = 30)
+//                        PlayersList(players = viewModel.listPlayers) { playerId ->
+//                            viewModel.changeFavorite(playerId)
+//                        }
+//                        Spacer(height = 50)
+//                        BottomBar()
 //                        ProfileList()
+//                        LoginScreen()
+                        LazyList()
+//                        ShowDate_TimePicker()
                     }
                 }
             }
@@ -63,6 +71,21 @@ fun Spacer(height: Int) {
 }
 
 
+@Composable
+private fun getDummyNames() = listOf(
+    "John", "Emma", "Michael", "Olivia", "William",
+    "Ava", "James", "Sophia", "Alexander", "Isabella",
+    "Daniel", "Mia", "David", "Emily", "Joseph",
+    "Charlotte", "Matthew", "Abigail", "Ethan", "Harper",
+    "Christopher", "Amelia", "Andrew", "Evelyn", "Benjamin",
+    "Elizabeth", "Joshua", "Sofia", "Jackson", "Avery",
+    "Sebastian", "Ella", "Logan", "Grace", "Samuel",
+    "Scarlett", "Ryan", "Chloe", "Henry", "Lily",
+    "Nathan", "Eleanor", "Dylan", "Hannah", "Jacob",
+    "Aria", "Lucas", "Layla", "Carter", "Victoria"
+)
+
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -72,5 +95,6 @@ fun DefaultPreview() {
 //    SectionLeagues()
 //    PlayersList()
 //    BottomBar()
+//  LoginScreen()
 }
 
